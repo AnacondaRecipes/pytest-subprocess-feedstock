@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d7693b96f588f39b84c7b2b5c04287459246dfae6be1dd4098937a728ad4fbe3
+  url: https://github.com/aklajnert/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 80172ac95439cd4a237c5ee7f343227a7fd21fb61284bfa0de4b7802502d88dc
 
 build:
   number: 0
@@ -29,8 +29,19 @@ test:
     - pytest_subprocess
   requires:
     - pip
+    - docutils >=0.12
+    - pygments >=2.0
+    - pytest-rerunfailures
+    - pytest-asyncio >=0.15.1
+    - pytest-timeout
+    - anyio
+  source_files:
+    - tests
+    - README.rst
+    - docs/index.rst
   commands:
     - pip check
+    - pytest -v tests
 
 about:
   home: https://pypi.org/project/pytest-subprocess/
