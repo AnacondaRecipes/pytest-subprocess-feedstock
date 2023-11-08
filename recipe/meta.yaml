@@ -6,36 +6,45 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytest-subprocess-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: d7693b96f588f39b84c7b2b5c04287459246dfae6be1dd4098937a728ad4fbe3
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
   number: 0
+  skip: true  # [py<37]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
+    - setuptools
+    - wheel    
   run:
-    - python >=3.6
+    - python
     - pytest >=4.0.0
 
 test:
   imports:
     - pytest_subprocess
-  commands:
-    - pip check
   requires:
     - pip
+  commands:
+    - pip check
 
 about:
   home: https://pypi.org/project/pytest-subprocess/
-  summary: A plugin to fake subprocess for pytest
-  dev_url: https://github.com/aklajnert/pytest-subprocess
   license: MIT
+  license_family: MIT
   license_file: LICENSE
+  summary: A plugin to fake subprocess for pytest
+  description: |
+    The plugin adds the fake_process fixture (and fp as an alias). It can be used it to register 
+    subprocess results so you won't need to rely on the real processes. The plugin hooks on the 
+    subprocess.Popen(), which is the base for other subprocess functions. That makes the subprocess.run(), 
+    subprocess.call(), subprocess.check_call() and subprocess.check_output() methods also functional.
+  dev_url: https://github.com/aklajnert/pytest-subprocess
+  doc_url: https://github.com/aklajnert/pytest-subprocess#usage
 
 extra:
   recipe-maintainers:
