@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<37]
+  skip: true  # [py<36]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -55,7 +55,7 @@ about:
     subprocess.Popen(), which is the base for other subprocess functions. That makes the subprocess.run(), 
     subprocess.call(), subprocess.check_call() and subprocess.check_output() methods also functional.
   dev_url: https://github.com/aklajnert/pytest-subprocess
-  doc_url: https://github.com/aklajnert/pytest-subprocess#usage
+  doc_url: https://pytest-subprocess.readthedocs.io/
 
 extra:
   recipe-maintainers:
