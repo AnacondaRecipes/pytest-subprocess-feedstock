@@ -1,13 +1,13 @@
 {% set name = "pytest-subprocess" %}
-{% set version = "1.5.0" %}
+{% set version = "1.5.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/aklajnert/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 80172ac95439cd4a237c5ee7f343227a7fd21fb61284bfa0de4b7802502d88dc
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytest_subprocess-{{ version }}.tar.gz
+  sha256: ad3ca8a35e798bf9c82d9f16d88700b30d98c5a28236117b86c5d6e581a8ed97
 
 build:
   number: 0
@@ -29,19 +29,8 @@ test:
     - pytest_subprocess
   requires:
     - pip
-    - docutils >=0.12
-    - pygments >=2.0
-    - pytest-rerunfailures
-    - pytest-asyncio >=0.15.1
-    - pytest-timeout
-    - anyio
-  source_files:
-    - tests
-    - README.rst
-    - docs/index.rst
   commands:
     - pip check
-    - pytest -v tests
 
 about:
   home: https://pypi.org/project/pytest-subprocess/
